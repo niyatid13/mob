@@ -1,0 +1,25 @@
+//q1 4 shift
+clc;
+clear;
+fc=input("Enter transmitter frequency(in Hz) :  ");
+v=input("Enter speed of the mobile (in m/s) :  ");
+c=3*(10^8);
+lambda=c/fc;
+
+for i = 1:4
+    theta=input("Enter the value of Theta(θ) :  ");
+    fd=(v/lambda)* cos(theta*(%pi/180))
+    f=fc+fd
+    disp("Frequency after doppler effect: ",int32(f),);
+end
+
+//q2 max speed
+clc;
+clear;
+fd=input("Enter doppler frequency shift :  ");
+fc=input("Enter transmitter frequency(in Hz) :  ");
+c=3*(10^8);
+l=c/fc;
+inp=0;
+v=(l*fd)/cos(inp);
+disp("For Angle = 0 degrees, Maximum speed of vehicle: "+string(v)+" m/s");
