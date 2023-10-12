@@ -1,0 +1,29 @@
+clear;
+clc;
+close;
+
+a=input("Enter allocated bandwidth (kHz): ");
+c=input("Enter channel bandwidth (kHz): ");
+
+totnoavailablech =a/c;
+disp("Total no. of available channels: ")
+disp(totnoavailablech)
+
+clusterSize = input("Enter cluster size(N): ")
+areaOfCell = input("Enter area of cell(km. sq): ")
+areaOfsys = input("Enter area of System(sq.km): ")
+noOfcells = areaOfsys/areaOfCell
+disp("No. of cells: ")
+disp(noOfcells)
+
+noofcluster = noOfcells/clusterSize
+disp("No of clusters: ")
+disp(noofcluster)
+
+cellCapacity = totnoavailablech/clusterSize
+disp("No. of channels per cell (channel/cell): ")
+disp(floor(cellCapacity))
+
+sysCapacity = totnoavailablech*noofcluster
+disp("System capacity(no. of users): ")
+disp(floor(sysCapacity))
