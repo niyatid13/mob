@@ -1,0 +1,39 @@
+clc;
+clear;
+//Sytem_A
+pop=input("Enter total population : ");
+t=input("Enter avg call duration in mins : ");
+lambda=input("Enter each users avg calls per hour : ");
+A=input("Total traffic intensity in Erlang : ");
+cells=input("Total cells in a system : ");
+H=t/60;
+Au=lambda*H;
+U=A/Au;
+subscriber=U*cells;
+pen=subscriber*100/pop;
+disp(U, "Number of users supported per cell : ");
+disp(subscriber,"Total no. of subscriber supported by system A : ");
+disp(pen,"system A penetration percentage : ");
+//System_B
+A1=input("Total traffic intensity in Erlang : ");
+cells1=input("Total cells in a system : ");
+U1=A1/Au;
+subscriber1=U1*cells1;
+pen1=subscriber1*100/pop;
+disp(U1, "Number of users supported per cell : ");
+disp(subscriber1,"Total no. of subscriber supported by system B : ");
+disp(pen1,"system B penetration percentage : ");
+//System_C
+A2=input("Total traffic intensity in Erlang : ");
+cells2=input("Total cells in a system : ");
+U2=A2/Au;
+subscriber2=U2*cells2;
+pen2=subscriber2*100/pop;
+disp(U2, "Number of users supported per cell : ");
+disp(subscriber2,"Total no. of subscriber supported by system C : ");
+disp(pen2,"system C penetration percentage : ");
+//Total market penetration
+t_pen=(pen+pen1+pen2);
+disp(t_pen, "Percent market penetration : ");
+
+
