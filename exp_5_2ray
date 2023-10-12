@@ -1,0 +1,18 @@
+clc;
+clear;
+close;
+d = input("Enter the distance between transmitter and receiver: ");
+Pt = input("Enter the transmitter power: ");
+Gt = input("Enter the transmitter gain: ");
+Gr = input("Enter the receiver gain: ");
+f = input(" Enter carrier frequency: ");
+c = 3*10^8;
+lambda = c/f;
+Pr = 10*log10((Pt*Gt*Gr*(lambda^2))/((4*%pi*d)^2));
+disp("Receiver Power: "+ string(Pr)+ " dBW");
+Pr_w = 10^((Pr)/10)
+Emag = sqrt((Pr_w*120*%pi*4*%pi)/(Gr*(lambda^2))) 
+disp("Magnitude of electric field at receiver: " + string(Emag)+ " V/m");
+Rr = input("Enter receiver antenna impedance: ");
+Vr = sqrt(Pr_w*4*Rr);
+disp("Rms voltage applied to the receiver input: "+ string(Vr*1000)+ " mV");
