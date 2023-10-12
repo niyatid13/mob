@@ -1,0 +1,45 @@
+clc;  
+close;  
+l=input("Enter the wavelength(in m): ");  
+d1=input("Enter the distance of obstruction from transmitter(in m): ");  
+d2=input("Enter the distance of obstruction from receiver(in m): ");  
+h=input("Enter the effective height of obstruction(in m): ") 
+v=h*sqrt(2*(d1+d2)/(l*d1*d2)) 
+del=(h^2*(d1+d2))/(2*d1*d2);  
+n=(2*del)/l;  
+n=floor(n);  
+if(v<=-1) then 
+ Gd=0 
+elseif(v>-1 && v<=0) then 
+ Gd=20*log10(0.5-0.62*v);  
+elseif(v>0 && v<=1) then 
+ Gd=20*log10(0.5*(%e^(-0.95*v)));  
+elseif(v>1 && v<=2.4) then 
+ Gd=20*log10(0.4-sqrt(0.1184-(0.38-0.1*v)^2));  
+elseif(v>2.4) then 
+ Gd=20*log10(0.225/v);  
+end 
+disp("Fresnel Diffraction parameter(v): "+string(v));  
+disp("Diffraction loss: "+string(Gd)+"dB"); 
+disp("Path length difference: " + string(del));
+//disp(del) 
+if(h>0)then 
+ disp("The tip of obstruction completely blocks first "+string(n)+" Fresnel  zones") 
+elseif(h==0)then 
+ disp("The tip of obstruction lies in the middle of the first Fresnel zone") else
+ disp("The tip of obstruction lies below the first "+string(n)+" Fresnel  zones") 
+end 
+v=-1:0.01:0;  
+Gd=20*log10(0.5-0.62*v);  
+plot(v,Gd);  
+v=0:0.01:1;  
+Gd=20*log10(0.5*(%e^(-0.95*v)));  
+plot(v,Gd);  
+v=1:0.01:2.4;  
+Gd=20*log10(0.4-sqrt(0.1184-(0.38-0.1*v)^2));  
+plot(v,Gd);  
+v=2.4:0.01:5;  
+Gd=20*log10(0.225*(v^-1));  
+plot(v,Gd);  
+xlabel("Fresnel diffraction parameter (v)") 
+ylabel("Knife edge diffraction gain (Gd)")
